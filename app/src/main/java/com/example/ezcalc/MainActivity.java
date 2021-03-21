@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -33,16 +34,31 @@ public class MainActivity extends AppCompatActivity {
         addP.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 int stringlen = text.length();
-                if ((text.getText().charAt(stringlen - 1) != '*') || (text.getText().charAt(stringlen - 1) != '/')){
-                    //int temp = text.getText();
-                    text.getText().append("*(");
+                try {
+                    if ((text.getText().charAt(stringlen - 1) != '*') || (text.getText().charAt(stringlen - 1) != '/') || (text.getText().charAt(stringlen - 1) != '(')){
+                        //int temp = text.getText();
+                        text.getText().append("*(");
+                    }
                 }
+                catch(Exception e){
+                    view.setText("ERROR");
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
             }
         });
 
         calc.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                view.setText(String.valueOf(evaluator.evaluate(String.valueOf(text.getText()))));
+                try {
+                    view.setText(String.valueOf(evaluator.evaluate(String.valueOf(text.getText()))));
+                }
+                catch(Exception e){
+                    view.setText("ERROR");
+                    Toast toast = Toast.makeText(getApplicationContext(),"Null expression error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
 
