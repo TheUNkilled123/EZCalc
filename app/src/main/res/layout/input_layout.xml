@@ -8,6 +8,7 @@
 
 
     <TextView
+        android:id="@+id/historyMiniView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
@@ -18,6 +19,7 @@
         android:text="23123"
         />
     <TextView
+        android:id="@+id/currentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="60sp"
@@ -26,13 +28,13 @@
         android:textColor="@color/white"
         android:padding="10dp"
         android:text="23123"
-        android:src=""
         />
 
-    <ImageView
+    <Button
+        android:id="@+id/historyButton"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:src="@drawable/povijest"
+        android:foreground="@drawable/povijest"
         android:layout_gravity="end"
         android:padding="2dp"
         />
