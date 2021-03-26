@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         btn0.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-
+                    results.append("0");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -225,7 +225,10 @@ public class MainActivity extends AppCompatActivity {
         ostatakDijeljenja.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
+                        results.append("%");
+                    }
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -289,12 +292,16 @@ public class MainActivity extends AppCompatActivity {
         equals.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
+                    Double result = evaluator.evaluate(String.valueOf(results.getText()));
+                    if (result % 1 == 0) {
+                        results.setText(Integer.toString((int) Math.round(result)));
+                    } else {
+                        results.setText(String.valueOf(result));
+                    }
+                }catch (Exception e){
+                    results.setText("ERROR");
+                }
 
-                }
-                catch(Exception e){
-                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
-                    toast.show();
-                }
             }
         });
 

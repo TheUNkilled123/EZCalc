@@ -15,6 +15,7 @@
 
     <Button
         android:id="@+id/SIMPLEdeleteALL"
+        android:backgroundTint="@color/bojaTipki"
         android:layout_height="100dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
