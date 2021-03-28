@@ -293,6 +293,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 try {
                     Double result = evaluator.evaluate(String.valueOf(results.getText()));
+                    resultsHitsory.setText(results.getText());
+                    resultsHitsory.append("=");
                     if (result % 1 == 0) {
                         results.setText(Integer.toString((int) Math.round(result)));
                     } else {
