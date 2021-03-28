@@ -6,7 +6,8 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/bojaTipki">
+    android:background="@color/bojaTipki"
+    >
 
     <include
         layout="@layout/input_layout"
