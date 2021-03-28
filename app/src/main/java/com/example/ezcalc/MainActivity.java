@@ -1,9 +1,13 @@
 package com.example.ezcalc;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -18,6 +22,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         Button equals = findViewById(R.id.SIMPLEequals);
         Button decimal = findViewById(R.id.SIMPLEdecimalPoint);
         Button historyButton = findViewById(R.id.historyButton);
+
+
+        results.setAutoSizeTextTypeUniformWithConfiguration(1, 60, 1, TypedValue.COMPLEX_UNIT_DIP);
 
 
 
@@ -139,7 +147,8 @@ public class MainActivity extends AppCompatActivity {
         btn5.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-                    results.append("5");
+                    results.setText(results.getText()+"5");
+                    //results.append("5");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -331,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
         historyButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-
+                    MainActivity.this.startActivity(new Intent(MainActivity.this, HistoryActivity.class));
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
