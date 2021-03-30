@@ -27,7 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:textSize="60sp"
-
         android:gravity="end"
         android:background="@color/bojaTipki"
         android:textColor="@color/white"

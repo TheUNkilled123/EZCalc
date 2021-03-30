@@ -20,9 +20,12 @@ import com.fathzer.soft.javaluator.DoubleEvaluator;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
+import io.paperdb.Paper;
+
 public class MainActivity extends AppCompatActivity {
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int stringlen = results.length();
                     if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
-                        results.append("+");
+                        results.setText(results.getText()+"+");
                     }
                     else if(results.getText().charAt(stringlen - 1) == '-'){
                         Toast toast = Toast.makeText(getApplicationContext(),"Plus i minus daju minus :)",Toast.LENGTH_SHORT);
@@ -87,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         btn0.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-                    results.append("0");
+                    results.setText(results.getText()+"0");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-                    results.append("1");
+                    results.setText(results.getText()+"1");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-                    results.append("2");
+                    results.setText(results.getText()+"2");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -123,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-                    results.append("3");
+                    results.setText(results.getText()+"3");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -135,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-                    results.append("4");
+                    results.setText(results.getText()+"4");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -160,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         btn6.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-                    results.append("6");
+                    results.setText(results.getText()+"6");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -172,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         btn7.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-                    results.append("7");
+                    results.setText(results.getText()+"7");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -184,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         btn8.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-                    results.append("8");
+                    results.setText(results.getText()+"8");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -196,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         btn9.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
-                    results.append("9");
+                    results.setText(results.getText()+"9");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -209,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 try {
                     results.setText("");
+                    resultsHitsory.setText("");
                 }
                 catch(Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
@@ -236,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int stringlen = results.length();
                     if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
-                        results.append("%");
+                        results.setText(results.getText()+"%");
                     }
                 }
                 catch(Exception e){
@@ -251,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int stringlen = results.length();
                     if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
-                        results.append("/");
+                        results.setText(results.getText()+"/");
                     }
                 }
                 catch(Exception e){
@@ -266,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int stringlen = results.length();
                     if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
-                        results.append("*");
+                        results.setText(results.getText()+"*");
                     }
                 }
                 catch(Exception e){
@@ -280,13 +284,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 int stringlen = results.length();
                 try {
-                    if(results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
-                        results.append("-");
+                    if(results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-'  &&  results.getText().charAt(stringlen - 1) != '.'){
+                        results.setText(results.getText()+"-");
                     }else if(results.getText().charAt(stringlen - 1) == '+'){
                         String myshit = results.getText().toString();
                         myshit = myshit.substring(0, myshit.length() - 1);
                         results.setText(myshit);
-                        results.append("-");
+                        results.setText(results.getText()+"-");
                         Toast toast = Toast.makeText(getApplicationContext(),"Plus i minus daju minus :)",Toast.LENGTH_SHORT);
                         toast.show();
                     }
@@ -299,20 +303,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         equals.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            public void onClick(View v) {
                 try {
                     Double result = evaluator.evaluate(String.valueOf(results.getText()));
+                    ArrayList<String> currentValues = Paper.book().read("calculatorHistory");
                     resultsHitsory.setText(results.getText());
-                    resultsHitsory.append("=");
+                    results.setText(results.getText()+"=");
                     if (result % 1 == 0) {
+                        currentValues.add(results.getText() + " = " + (int) Math.round(result));
                         results.setText(Integer.toString((int) Math.round(result)));
                     } else {
+                        currentValues.add(results.getText() + " = " + result);
                         results.setText(String.valueOf(result));
                     }
-                }catch (Exception e){
+                    Paper.book().write("calculatorHistory", currentValues);
+                }catch(Exception e){
                     results.setText("ERROR");
                 }
-
             }
         });
 
@@ -322,10 +329,10 @@ public class MainActivity extends AppCompatActivity {
                     int stringlen = results.length();
                     if(results.getText().charAt(stringlen - 1) != '.'){
                         if(results.getText().charAt(stringlen - 1) == '\0' || results.getText().charAt(stringlen - 1) == '+' ||  results.getText().charAt(stringlen - 1) == '-' ||  results.getText().charAt(stringlen - 1) == '/' ||  results.getText().charAt(stringlen - 1) == '%' || results.getText().charAt(stringlen - 1) == '*'){
-                            results.append("0.");
+                            results.setText(results.getText()+"0.");
                         }else{
                             if(!isInsideDecimal(results.getText().toString())) {
-                                results.append(".");
+                                results.setText(results.getText()+"0.");
                             }
                         }
                     }

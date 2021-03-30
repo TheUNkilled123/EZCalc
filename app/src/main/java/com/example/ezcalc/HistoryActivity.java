@@ -2,12 +2,22 @@ package com.example.ezcalc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import io.paperdb.Paper;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -20,8 +30,9 @@ public class HistoryActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         ImageButton back = findViewById(R.id.Back);
-        ListView list = findViewById(R.id.list);
-        String test[] = {"12302+23 = 23", "12302+23 = 23", "12302+23 = 23", "12302+23 = 23","12302+23 = 23"};
+        ImageButton deleteHistory = findViewById(R.id.deleteHistory);
+
+        setView();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,7 +41,42 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, test);
-        list.setAdapter(listAdapter);
+        deleteHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> empty=new ArrayList<String>();
+                Paper.book().write("calculatorHistory",empty);
+                setView();
+            }
+        });
     }
+
+
+
+public void setView(){
+    ListView list = findViewById(R.id.list);
+
+    ArrayList<String> stringArrayValues = Paper.book().read("calculatorHistory");
+    ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringArrayValues){
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+            // Get the Item from ListView
+            View view = super.getView(position, convertView, parent);
+
+            // Initialize a TextView for ListView each Item
+            TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+            // Set the text color of TextView (ListView Item)
+            tv.setMaxWidth(200);
+            tv.setTextColor(Color.WHITE);
+            tv.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+            tv.setAutoSizeTextTypeUniformWithConfiguration(1, 35, 1, TypedValue.COMPLEX_UNIT_DIP);
+
+
+            // Generate ListView Item using TextView
+            return view;
+        }
+    };
+    list.setAdapter(listAdapter);
+}
 }
