@@ -1,12 +1,8 @@
 package com.example.ezcalc;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,13 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
-
 import com.fathzer.soft.javaluator.DoubleEvaluator;
-
-import org.w3c.dom.Text;
+import com.fathzer.soft.javaluator.Function;
+import com.fathzer.soft.javaluator.Parameters;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import io.paperdb.Paper;
 
@@ -30,12 +25,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DoubleEvaluator evaluator = new DoubleEvaluator();
+        Function SQRT = new Function("sqrt", 1);
+        Parameters params = DoubleEvaluator.getDefaultParameters();
+        params.add(SQRT);
+        DoubleEvaluator evaluator = new DoubleEvaluator(params){
+            @Override
+            protected Double evaluate(Function function, Iterator arguments, Object evaluationContext) {
+                if (function == SQRT) {
+                    // Implements the new function
+                    return Math.sqrt((Double) arguments.next());
+                } else {
+                    // If it's another function, pass it to DoubleEvaluator
+                    return super.evaluate(function, arguments, evaluationContext);
+                }
+            }
+        };
 
 
+        TextView memoryStatus = findViewById(R.id.memoryStatus);
         TextView results = findViewById(R.id.currentView);
         TextView resultsHitsory = findViewById(R.id.historyMiniView);
         results.setText("");
+        if (Paper.book().read("memory") == ""){
+            memoryStatus.setVisibility(View.INVISIBLE);
+        }else{
+            memoryStatus.setVisibility(View.VISIBLE);
+        }
         //UI/Fullscreen scaling fixes
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
@@ -60,11 +75,21 @@ public class MainActivity extends AppCompatActivity {
         Button equals = findViewById(R.id.SIMPLEequals);
         Button decimal = findViewById(R.id.SIMPLEdecimalPoint);
         Button historyButton = findViewById(R.id.historyButton);
-
+      /*Button piButton = findViewById(R.id.piButton);
+        Button sinButton = findViewById(R.id.sinButton);
+        Button cosButton = findViewById(R.id.cosButton);
+        Button openBrackets = findViewById(R.id.openBrackets);
+        Button closeBrackets = findViewById(R.id.closeBrackets);
+        Button toPowerButton = findViewById(R.id.toPowerButton);
+        Button sqrtButton = findViewById(R.id.sqrtButton);
+        Button tanButton = findViewById(R.id.tanButton);
+        Button absButton = findViewById(R.id.absButton);
+        Button lnButton = findViewById(R.id.lnButton);
+        Button memoryButton = findViewById(R.id.memoryButton);
+        Button memoryClearButton = findViewById(R.id.memoryClearButton);
+       */
 
         results.setAutoSizeTextTypeUniformWithConfiguration(1, 60, 1, TypedValue.COMPLEX_UNIT_DIP);
-
-
 
         //Wall of shit incoming...
         plus.setOnClickListener(new View.OnClickListener(){
@@ -356,6 +381,151 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        piButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    results.setText(results.getText()+"pi");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        sinButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    results.setText(results.getText()+"sin(");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        cosButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    results.setText(results.getText()+"cos(");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        openBrackets.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    results.setText(results.getText()+"(");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        closeBrackets.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    results.setText(results.getText()+")");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        toPowerButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    results.setText(results.getText()+"^");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        sqrtButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    results.setText(results.getText()+"sqrt(");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        tanButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    results.setText(results.getText()+"tan(");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        absButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    results.setText(results.getText()+"abs(");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        lnButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    results.setText(results.getText()+"ln(");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        memoryButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    Paper.book().write("memory",results.getText());
+                    memoryStatus.setVisibility(View.VISIBLE);
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        memoryClearButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    Paper.book().write("memory","");
+                    memoryStatus.setVisibility(View.INVISIBLE);
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
 
 
         /*All code below is only for testing purposes and not final -- Sav kod ispod je samo za test i nije finalan.

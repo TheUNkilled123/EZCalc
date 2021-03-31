@@ -9,11 +9,25 @@
     android:background="@color/bojaTipki"
     >
 
+    <TextView
+        android:id="@+id/memoryStatus"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="16dp"
+        android:text="M"
+        android:textSize="40sp"
+        android:textAlignment="center"
+        android:translationZ="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <include
         layout="@layout/input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/rl_buttons"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
@@ -28,6 +42,7 @@
             layout="@layout/buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

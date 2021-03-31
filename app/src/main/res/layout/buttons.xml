@@ -7,12 +7,14 @@
     android:background="@color/bojaTipki">
 
     <GridLayout
+        android:id="@+id/GridLayout123"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bojaTipki"
         android:columnCount="6"
         android:rowCount="5"
 
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

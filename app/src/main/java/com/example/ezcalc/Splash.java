@@ -23,6 +23,9 @@ public class Splash extends AppCompatActivity {
             ArrayList<String> empty=new ArrayList<String>();
             Paper.book().write("calculatorHistory",empty);
         }
+        if (Paper.book().read("memory") == null){
+            Paper.book().write("memory","");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash2);
         //UI/Fullscreen scaling fixes

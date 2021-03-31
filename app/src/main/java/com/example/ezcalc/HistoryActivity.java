@@ -70,7 +70,7 @@ public void setView(){
             tv.setMaxWidth(200);
             tv.setTextColor(Color.WHITE);
             tv.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-            tv.setAutoSizeTextTypeUniformWithConfiguration(1, 35, 1, TypedValue.COMPLEX_UNIT_DIP);
+            tv.setAutoSizeTextTypeUniformWithConfiguration(1, 29, 1, TypedValue.COMPLEX_UNIT_DIP);
 
 
             // Generate ListView Item using TextView
