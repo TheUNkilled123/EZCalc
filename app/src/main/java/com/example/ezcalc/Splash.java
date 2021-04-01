@@ -30,7 +30,6 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash2);
         //UI/Fullscreen scaling fixes
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
 
         int delay = 1000;
         new Handler().postDelayed(new Runnable() {

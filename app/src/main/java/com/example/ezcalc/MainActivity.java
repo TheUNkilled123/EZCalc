@@ -1,6 +1,13 @@
 package com.example.ezcalc;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -10,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.esotericsoftware.kryo.NotNull;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.Function;
 import com.fathzer.soft.javaluator.Parameters;
@@ -19,8 +27,10 @@ import java.util.Iterator;
 
 import io.paperdb.Paper;
 
-public class MainActivity extends AppCompatActivity {
+import static android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 
+public class MainActivity extends AppCompatActivity {
+    TextView results;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +53,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         TextView memoryStatus = findViewById(R.id.memoryStatus);
-        TextView results = findViewById(R.id.currentView);
+        results = findViewById(R.id.currentView);
         TextView resultsHitsory = findViewById(R.id.historyMiniView);
         results.setText("");
+        ViewPager2 viewPager = findViewById(R.id.viewPager);
+        FragmentStateAdapter pageAdapter = new ScreenSlidePageAdapter(this);
+        viewPager.setAdapter(pageAdapter);
         if (Paper.book().read("memory") == ""){
             memoryStatus.setVisibility(View.INVISIBLE);
         }else{
@@ -53,9 +66,13 @@ public class MainActivity extends AppCompatActivity {
         }
         //UI/Fullscreen scaling fixes
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
 
-        Button plus = findViewById(R.id.SIMPLEadding);
+
+        View decorView = getWindow().getDecorView();
+        int uiOptions = SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+       /* Button plus = findViewById(R.id.SIMPLEadding);
         Button btn0 = findViewById(R.id.SIMPLEbtn0);
         Button btn1 = findViewById(R.id.SIMPLEbtn1);
         Button btn2 = findViewById(R.id.SIMPLEbt2);
@@ -74,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
         Button minus = findViewById(R.id.SIMPLEoduzimanje);
         Button equals = findViewById(R.id.SIMPLEequals);
         Button decimal = findViewById(R.id.SIMPLEdecimalPoint);
-        Button historyButton = findViewById(R.id.historyButton);
-      /*Button piButton = findViewById(R.id.piButton);
+      Button piButton = findViewById(R.id.piButton);
         Button sinButton = findViewById(R.id.sinButton);
         Button cosButton = findViewById(R.id.cosButton);
         Button openBrackets = findViewById(R.id.openBrackets);
@@ -88,10 +104,22 @@ public class MainActivity extends AppCompatActivity {
         Button memoryButton = findViewById(R.id.memoryButton);
         Button memoryClearButton = findViewById(R.id.memoryClearButton);
        */
+        Button historyButton = findViewById(R.id.historyButton);
 
         results.setAutoSizeTextTypeUniformWithConfiguration(1, 60, 1, TypedValue.COMPLEX_UNIT_DIP);
 
-        //Wall of shit incoming...
+        historyButton.setOnClickListener(v -> {
+            try {
+                MainActivity.this.startActivity(new Intent(MainActivity.this, HistoryActivity.class));
+            }
+            catch(Exception e){
+                Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+        /*
+
         plus.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
@@ -369,18 +397,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        historyButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                try {
-                    MainActivity.this.startActivity(new Intent(MainActivity.this, HistoryActivity.class));
-                }
-                catch(Exception e){
-                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
-        });
 
+
+        /*
         piButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
@@ -583,7 +602,115 @@ public class MainActivity extends AppCompatActivity {
            }
            return false;
 
-
-
     }
+
+    private static class ScreenSlidePageAdapter extends FragmentStateAdapter {
+
+        public ScreenSlidePageAdapter(FragmentActivity fa) {
+            super(fa);
+        }
+
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+            switch (position) {
+                case 0:
+                    return new FragmentSimple();
+                case 1:
+                    return new FragmentScientfic();
+            }
+            return null;
+        }
+
+        @Override
+        public int getItemCount() {
+            return 2;
+        }
+    }
+        //Definicija dugmadi
+
+        public void onClick(View view){
+
+            int id = view.getId();
+            if (id==R.id.SIMPLEbtn0){
+
+            }
+            else if(id==R.id.SIMPLEbtn1){
+
+            }
+            else if(id==R.id.SIMPLEbt2){
+
+            }
+            else if(id==R.id.SIMPLEbtn3){
+
+            }
+            else if(id==R.id.SIMPLEbtn4){
+
+            }
+            else if(id==R.id.SIMPLEbt5){
+
+            }
+            else if(id==R.id.SIMPLEbtn6){
+
+            }
+            else if(id==R.id.SIMPLEbtn7){
+
+            }
+            else if(id==R.id.SIMPLEbt8){
+
+            }
+            else if(id==R.id.SIMPLEbtn9){
+
+            }
+            else if(id==R.id.SIMPLEdeleteALL){
+
+            }
+            else if(id==R.id.SIMPLEdelete){
+
+            }
+            else if(id==R.id.SIMPLEmultiply){
+
+            }
+            else if(id==R.id.SIMPLEoduzimanje){
+
+            }
+            else if(id==R.id.SIMPLEdivideResidueButton){
+
+            }
+            else if(id==R.id.SIMPLEdivide){
+
+            }
+            else if(id==R.id.SIMPLEadding){
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
+                        results.setText(results.getText()+"+");
+                    }
+                    else if(results.getText().charAt(stringlen - 1) == '-'){
+                        Toast toast = Toast.makeText(getApplicationContext(),"Plus i minus daju minus :)",Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+            else if(id==R.id.SIMPLEequals){
+
+            }
+            else if(id==R.id.SIMPLEdecimalPoint){
+
+            }
+
+
+
+        }
+
+
+
+
+
 }

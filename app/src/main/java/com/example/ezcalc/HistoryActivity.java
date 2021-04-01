@@ -27,7 +27,6 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         //UI/Fullscreen scaling fixes
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
 
         ImageButton back = findViewById(R.id.Back);
         ImageButton deleteHistory = findViewById(R.id.deleteHistory);
