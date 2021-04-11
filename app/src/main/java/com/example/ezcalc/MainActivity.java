@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,8 +32,11 @@ import static android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 
 public class MainActivity extends AppCompatActivity {
     TextView results;
+    TextView resultsHitsory;
+    DoubleEvaluator evaluator;
+    TextView memoryStatus;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Function SQRT = new Function("sqrt", 1);
@@ -52,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-        TextView memoryStatus = findViewById(R.id.memoryStatus);
         results = findViewById(R.id.currentView);
-        TextView resultsHitsory = findViewById(R.id.historyMiniView);
+        resultsHitsory = findViewById(R.id.historyMiniView);
+        memoryStatus = findViewById(R.id.memoryStatus);
         results.setText("");
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         FragmentStateAdapter pageAdapter = new ScreenSlidePageAdapter(this);
@@ -610,7 +614,6 @@ public class MainActivity extends AppCompatActivity {
             super(fa);
         }
 
-
         @NonNull
         @Override
         public Fragment createFragment(int position) {
@@ -629,57 +632,174 @@ public class MainActivity extends AppCompatActivity {
         }
     }
         //Definicija dugmadi
-
         public void onClick(View view){
 
             int id = view.getId();
             if (id==R.id.SIMPLEbtn0){
-
+                try {
+                    results.setText(results.getText()+"0");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEbtn1){
-
+                try {
+                    results.setText(results.getText()+"1");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEbt2){
-
+                try {
+                    results.setText(results.getText()+"2");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEbtn3){
-
+                try {
+                    results.setText(results.getText()+"3");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEbtn4){
-
+                try {
+                    results.setText(results.getText()+"4");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEbt5){
-
+                try {
+                    results.setText(results.getText()+"5");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEbtn6){
-
+                try {
+                    results.setText(results.getText()+"6");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEbtn7){
-
+                try {
+                    results.setText(results.getText()+"7");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEbt8){
-
+                try {
+                    results.setText(results.getText()+"8");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEbtn9){
-
+                try {
+                    results.setText(results.getText()+"9");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEdeleteALL){
-
+                try {
+                    results.setText("");
+                    resultsHitsory.setText("");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEdelete){
-
+                try {
+                    String myshit = results.getText().toString();
+                    myshit = myshit.substring(0, myshit.length() - 1);
+                    results.setText(myshit);
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEmultiply){
-
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
+                        results.setText(results.getText()+"*");
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEoduzimanje){
-
+                int stringlen = results.length();
+                try {
+                    if(results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-'  &&  results.getText().charAt(stringlen - 1) != '.'){
+                        results.setText(results.getText()+"-");
+                    }else if(results.getText().charAt(stringlen - 1) == '+'){
+                        String myshit = results.getText().toString();
+                        myshit = myshit.substring(0, myshit.length() - 1);
+                        results.setText(myshit);
+                        results.setText(results.getText()+"-");
+                        Toast toast = Toast.makeText(getApplicationContext(),"Plus i minus daju minus :)",Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEdivideResidueButton){
-
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
+                        results.setText(results.getText()+"%");
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEdivide){
-
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
+                        results.setText(results.getText()+"/");
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
             else if(id==R.id.SIMPLEadding){
                 try {
@@ -698,16 +818,210 @@ public class MainActivity extends AppCompatActivity {
                     toast.show();
                 }
             }
-            else if(id==R.id.SIMPLEequals){
+            else if(id==R.id.SIMPLEequals) {
+                    Log.d("D","calculating:"+ results.getText());
+                    Double result = evaluator.evaluate(results.getText().toString());
+                    ArrayList<String> currentValues = Paper.book().read("calculatorHistory");
+                    resultsHitsory.setText(results.getText());
+                    results.setText(results.getText() + "=");
+                    if (result % 1 == 0) {
+                        currentValues.add(results.getText() + " = " + (int) Math.round(result));
+                        results.setText(Integer.toString((int) Math.round(result)));
+                    } else {
+                        currentValues.add(results.getText() + " = " + result);
+                        results.setText(String.valueOf(result));
+                    }
+                    Paper.book().write("calculatorHistory", currentValues);
 
             }
             else if(id==R.id.SIMPLEdecimalPoint){
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) != '.'){
+                        if(results.getText().charAt(stringlen - 1) == '\0' || results.getText().charAt(stringlen - 1) == '+' ||  results.getText().charAt(stringlen - 1) == '-' ||  results.getText().charAt(stringlen - 1) == '/' ||  results.getText().charAt(stringlen - 1) == '%' || results.getText().charAt(stringlen - 1) == '*'){
+                            results.setText(results.getText()+"0.");
+                        }else{
+                            if(!isInsideDecimal(results.getText().toString())) {
+                                results.setText(results.getText()+"0.");
+                            }
+                        }
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
 
+            else if(id==R.id.piButton){
+                try {
+                    results.setText(results.getText()+"pi");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.sinButton){
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
+                        results.setText(results.getText()+"sin(");
+                    }
+                    else{
+                        results.setText(results.getText()+"*sin(");
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.cosButton){
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) == '\0' && results.getText().charAt(stringlen - 1) == '+' &&  results.getText().charAt(stringlen - 1) == '-' &&  results.getText().charAt(stringlen - 1) == '/' &&  results.getText().charAt(stringlen - 1) == '%' &&  results.getText().charAt(stringlen - 1) == '.' && results.getText().charAt(stringlen - 1) == '*'){
+                        results.setText(results.getText()+"cos(");
+                    }
+                    else{
+                        results.setText(results.getText()+"*cos(");
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.tanButton){
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) == '\0' && results.getText().charAt(stringlen - 1) == '+' &&  results.getText().charAt(stringlen - 1) == '-' &&  results.getText().charAt(stringlen - 1) == '/' &&  results.getText().charAt(stringlen - 1) == '%' &&  results.getText().charAt(stringlen - 1) == '.' && results.getText().charAt(stringlen - 1) == '*'){
+                        results.setText(results.getText()+"tan(");
+                    }
+                    else{
+                        results.setText(results.getText()+"*tan(");
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.absButton){
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) == '\0' && results.getText().charAt(stringlen - 1) == '+' &&  results.getText().charAt(stringlen - 1) == '-' &&  results.getText().charAt(stringlen - 1) == '/' &&  results.getText().charAt(stringlen - 1) == '%' &&  results.getText().charAt(stringlen - 1) == '.' && results.getText().charAt(stringlen - 1) == '*'){
+                        results.setText(results.getText()+"abs(");
+                    }
+                    else{
+                        results.setText(results.getText()+"*abs(");
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.lnButton){
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) == '\0' && results.getText().charAt(stringlen - 1) == '+' &&  results.getText().charAt(stringlen - 1) == '-' &&  results.getText().charAt(stringlen - 1) == '/' &&  results.getText().charAt(stringlen - 1) == '%' &&  results.getText().charAt(stringlen - 1) == '.' && results.getText().charAt(stringlen - 1) == '*'){
+                        results.setText(results.getText()+"ln(");
+                    }
+                    else{
+                        results.setText(results.getText()+"*ln(");
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.sqrtButton){
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) == '\0' && results.getText().charAt(stringlen - 1) == '+' &&  results.getText().charAt(stringlen - 1) == '-' &&  results.getText().charAt(stringlen - 1) == '/' &&  results.getText().charAt(stringlen - 1) == '%' &&  results.getText().charAt(stringlen - 1) == '.' && results.getText().charAt(stringlen - 1) == '*'){
+                        results.setText(results.getText()+"sqrt(");
+                    }
+                    else{
+                        results.setText(results.getText()+"*sqrt(");
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.openBrackets){
+                try {
+                    results.setText(results.getText()+"(");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.closeBrackets){
+                try {
+                    results.setText(results.getText()+")");
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.toPowerButton){
+                try {
+                    int stringlen = results.length();
+                    if(results.getText().charAt(stringlen - 1) != '\0' && results.getText().charAt(stringlen - 1) != '+' &&  results.getText().charAt(stringlen - 1) != '-' &&  results.getText().charAt(stringlen - 1) != '/' &&  results.getText().charAt(stringlen - 1) != '%' &&  results.getText().charAt(stringlen - 1) != '.' && results.getText().charAt(stringlen - 1) != '*'){
+                        results.setText(results.getText()+"^");
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.memoryButton){
+                try {
+                    if(results.length() != 0 && results.getText() != "0"){
+                        Paper.book().write("calculatorHistory",results.getText());
+                        memoryStatus.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        Paper.book().write("calculatorHistory","");
+                        memoryStatus.setVisibility(View.INVISIBLE);
+                    }
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            else if(id==R.id.memoryClearButton){
+                try {
+                    results.setText(Paper.book().read("calculatorHistory"));
+                }
+                catch(Exception e){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Generic string error!",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
 
 
-
         }
+
 
 
 
