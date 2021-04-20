@@ -13,7 +13,6 @@
         android:background="@color/bojaTipki"
         android:columnCount="6"
         android:rowCount="5"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +29,10 @@
             android:background="@color/bojaTipki"
             android:backgroundTint="@color/bojaTipki"
             android:text="AC"
+            android:onClick="onClick"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            />
 
         <Button
             android:id="@+id/SIMPLEdelete"
@@ -44,6 +45,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="DEL"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -58,6 +60,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="%"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -72,6 +75,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="/"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -85,6 +89,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
+            android:onClick="onClick"
             android:text="7"
             android:textColor="@color/white"
             android:textSize="25sp" />
@@ -100,6 +105,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="8"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -114,6 +120,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="9"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -128,6 +135,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="x"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -142,6 +150,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="4"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -156,6 +165,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="5"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -170,6 +180,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="6"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -184,6 +195,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="+"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -198,6 +210,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="1"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -212,6 +225,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="2"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -226,6 +240,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="3"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -240,6 +255,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="-"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -254,6 +270,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="0"
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -269,6 +286,7 @@
             android:layout_marginRight="5dp"
             android:background="@color/bojaTipki"
             android:text="."
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -283,6 +301,7 @@
             android:layout_marginRight="5dp"
             android:backgroundTint="@color/orange"
             android:text="="
+            android:onClick="onClick"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
