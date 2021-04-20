@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 
 public class Splash extends AppCompatActivity {
-
+    //Inicijalizacija varijabli i elemenata na zaslonu
     int logoDuration = 500;
     int textDuration = 200;
     int splashDelay = 800;

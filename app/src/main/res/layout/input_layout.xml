@@ -20,7 +20,7 @@
         android:background="@color/bojaTipki"
         android:textColor="@color/white"
         android:padding="10dp"
-        android:text=""
+        android:text="45+28"
         />
     <TextView
         android:id="@+id/currentView"
