@@ -39,21 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Function SQRT = new Function("sqrt", 1);
-        Parameters params = DoubleEvaluator.getDefaultParameters();
-        params.add(SQRT);
-        DoubleEvaluator evaluator = new DoubleEvaluator(params){
-            @Override
-            protected Double evaluate(Function function, Iterator arguments, Object evaluationContext) {
-                if (function == SQRT) {
-                    // Implements the new function
-                    return Math.sqrt((Double) arguments.next());
-                } else {
-                    // If it's another function, pass it to DoubleEvaluator
-                    return super.evaluate(function, arguments, evaluationContext);
-                }
-            }
-        };
+
 
 
         results = findViewById(R.id.currentView);
@@ -634,6 +620,22 @@ public class MainActivity extends AppCompatActivity {
         //Definicija dugmadi
         public void onClick(View view){
 
+            Function SQRT = new Function("sqrt", 1);
+            Parameters params = DoubleEvaluator.getDefaultParameters();
+            params.add(SQRT);
+            DoubleEvaluator evaluator = new DoubleEvaluator(params){
+                @Override
+                protected Double evaluate(Function function, Iterator arguments, Object evaluationContext) {
+                    if (function == SQRT) {
+                        // Implements the new function
+                        return Math.sqrt((Double) arguments.next());
+                    } else {
+                        // If it's another function, pass it to DoubleEvaluator
+                        return super.evaluate(function, arguments, evaluationContext);
+                    }
+                }
+            };
+
             int id = view.getId();
             if (id==R.id.SIMPLEbtn0){
                 try {
@@ -819,7 +821,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             else if(id==R.id.SIMPLEequals) {
-                    Log.d("D","calculating:"+ results.getText());
                     Double result = evaluator.evaluate(results.getText().toString());
                     ArrayList<String> currentValues = Paper.book().read("calculatorHistory");
                     resultsHitsory.setText(results.getText());
